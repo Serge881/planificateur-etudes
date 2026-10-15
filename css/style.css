@@ -1,6 +1,36 @@
 /* Styles du Planificateur d'études */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: system-ui, sans-serif;
   margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+header {
+  background: #2563eb;
+  color: white;
   padding: 16px;
 }
+
+header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+main {
+  padding: 16px;
+}
+
+.etat {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #e2e8f0;
+}
+
+.etat.en-ligne { background: #dcfce7; }
+.etat.hors-ligne { background: #fee2e2; }
