@@ -1,3 +1,8 @@
+/* ===== Police (incluse dans l'application : fonctionne hors ligne) ===== */
+@font-face { font-family: "Poppins"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/poppins-400.woff") format("woff"); }
+@font-face { font-family: "Poppins"; font-weight: 500; font-style: normal; font-display: swap; src: url("fonts/poppins-500.woff") format("woff"); }
+@font-face { font-family: "Poppins"; font-weight: 700; font-style: normal; font-display: swap; src: url("fonts/poppins-700.woff") format("woff"); }
+
 /* ===== Couleurs (thème clair par défaut, sombre automatique) ===== */
 :root {
   --fond: #f5f3ff; --carte: #ffffff; --texte: #1e1b4b; --discret: #475569;
@@ -15,7 +20,7 @@
 * { box-sizing: border-box; }
 body {
   margin: 0; background: var(--fond); color: var(--texte);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 #app { max-width: 520px; margin: 0 auto; min-height: 100vh; }
 .page { padding-bottom: 32px; }
@@ -31,7 +36,7 @@ body {
 .hero::after { right: 60px; bottom: -40px; width: 90px; height: 90px; background: #f43f5e; opacity: .45; }
 .hero > * { position: relative; z-index: 1; }
 .hero-petit { margin: 0; font-size: 13px; font-weight: 600; opacity: .9; }
-.hero-titre { margin: 6px 0 0; font-size: 30px; font-weight: 800; letter-spacing: -.5px; }
+.hero-titre { margin: 6px 0 0; font-size: 30px; font-weight: 700; letter-spacing: -.5px; }
 .hero-texte { margin: 8px 0 0; font-size: 14px; opacity: .9; }
 .pilule { display: inline-block; margin-top: 12px; padding: 5px 12px; border-radius: 999px;
   background: rgba(255,255,255,.2); font-size: 13px; font-weight: 700; }
@@ -40,7 +45,7 @@ body {
 .carte { background: var(--carte); border-radius: 22px; padding: 18px; margin: 14px 18px;
   box-shadow: 0 2px 10px rgba(30,27,75,.12); }
 .carte-haute { margin-top: -26px; position: relative; }
-.carte-titre { margin: 0 0 8px; font-size: 17px; font-weight: 800; }
+.carte-titre { margin: 0 0 8px; font-size: 17px; font-weight: 700; }
 .texte { margin: 0 0 14px; color: var(--discret); font-size: 15px; line-height: 1.5; }
 .etiquette { display: block; margin: 4px 0 6px; font-size: 13px; font-weight: 700; color: var(--discret); }
 .champ { width: 100%; min-height: 48px; padding: 12px 14px; margin-bottom: 16px; font: inherit; font-size: 16px;
@@ -53,7 +58,7 @@ body {
 /* ===== Boutons ===== */
 .bouton, .bouton-secondaire, .bouton-danger {
   display: flex; align-items: center; justify-content: center; width: 100%; min-height: 52px; margin-top: 10px;
-  padding: 0 18px; border-radius: 18px; font: inherit; font-size: 16px; font-weight: 800; cursor: pointer; text-decoration: none; }
+  padding: 0 18px; border-radius: 18px; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; text-decoration: none; }
 .bouton { border: 0; background: var(--primaire); color: #fff; }
 .bouton-secondaire { background: transparent; color: var(--primaire); border: 2px solid var(--primaire); }
 .bouton-danger { background: transparent; color: var(--danger); border: 2px solid var(--danger); }
@@ -77,11 +82,11 @@ body {
 .tuile { display: flex; flex-direction: column; padding: 16px; border-radius: 22px; color: #fff; text-decoration: none;
   box-shadow: 0 8px 18px rgba(0,0,0,.18); min-height: 130px; }
 .tuile-init { width: 42px; height: 42px; border-radius: 14px; background: rgba(255,255,255,.22);
-  display: flex; align-items: center; justify-content: center; font-weight: 800; }
-.tuile-nom { margin-top: 14px; font-size: 16px; font-weight: 800; overflow-wrap: anywhere; }
+  display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.tuile-nom { margin-top: 14px; font-size: 16px; font-weight: 700; overflow-wrap: anywhere; }
 .tuile-sous { margin-top: 2px; font-size: 13px; opacity: .92; }
 .tuile-ajout { grid-column: span 2; display: flex; align-items: center; justify-content: center; min-height: 64px;
-  border: 2px dashed var(--primaire); border-radius: 22px; color: var(--primaire); font-weight: 800; text-decoration: none; }
+  border: 2px dashed var(--primaire); border-radius: 22px; color: var(--primaire); font-weight: 700; text-decoration: none; }
 
 /* ===== Navigation du bas ===== */
 .nav { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); width: calc(100% - 28px); max-width: 492px;
@@ -90,3 +95,42 @@ body {
   justify-content: center; gap: 2px; color: #fff; opacity: .8; font-size: 10px; font-weight: 700; text-decoration: none; }
 .nav-item.actif { background: #6d28d9; opacity: 1; }
 .lien-bouton { text-decoration: none; }
+
+/* ===== Tâches ===== */
+.espace { height: 16px; }
+.filtres { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.filtre { min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px; font: inherit; font-size: 13px; font-weight: 700;
+  background: rgba(255,255,255,.18); color: #fff; cursor: pointer; }
+.filtre.actif { background: #fff; color: #1e1b4b; }
+.filtre:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.liste-taches { display: flex; flex-direction: column; gap: 10px; margin: 0 18px; }
+.tache { display: flex; align-items: center; gap: 4px; background: var(--carte); border-radius: 20px; padding: 6px 14px 6px 6px;
+  box-shadow: 0 2px 10px rgba(30,27,75,.12); }
+.coche { flex: none; width: 52px; height: 52px; border: 0; background: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.coche-rond { width: 28px; height: 28px; border: 3px solid; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; }
+.coche-rond svg { width: 18px; height: 18px; stroke-width: 3; }
+.coche:focus-visible, .tache-corps:focus-visible, .fab:focus-visible { outline: 3px solid var(--primaire); outline-offset: 2px; border-radius: 14px; }
+.tache-corps { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 8px 0; color: inherit; text-decoration: none; }
+.tache-titre { font-weight: 700; overflow-wrap: anywhere; }
+.tache.faite .tache-titre { text-decoration: line-through; opacity: .6; }
+.tache-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.etiquette-matiere { padding: 3px 10px; border-radius: 999px; color: #fff; font-size: 12px; font-weight: 700; }
+.tache-date { font-size: 13px; font-weight: 500; color: var(--discret); }
+.tache-date.retard { color: var(--danger); font-weight: 700; }
+.fab { position: fixed; right: max(22px, calc(50% - 238px)); bottom: 96px; width: 58px; height: 58px; border-radius: 50%; background: #e11d48;
+  color: #fff; font-size: 32px; line-height: 58px; text-align: center; text-decoration: none; box-shadow: 0 8px 20px rgba(225,29,72,.4); }
+.titre-section { margin: 22px 20px 12px; font-size: 17px; font-weight: 700; }
+.marge { margin: 0 20px 14px; }
+.barre { height: 12px; border-radius: 8px; background: var(--bord); overflow: hidden; margin-bottom: 10px; }
+.barre-pleine { height: 100%; border-radius: 8px; background: var(--primaire); }
+select.champ { appearance: auto; }
+
+/* ===== État vide ===== */
+.vide { text-align: center; padding: 8px 30px 0; }
+.vide-ill { position: relative; width: 200px; height: 170px; margin: 10px auto 18px; }
+.vide-rond { position: absolute; left: 25px; top: 10px; width: 150px; height: 150px; border-radius: 50%; background: var(--primaire);
+  display: flex; align-items: center; justify-content: center; color: #fff; }
+.vide-rond svg { width: 76px; height: 76px; stroke-width: 2.5; }
+.vide-p1 { position: absolute; left: 0; top: 90px; width: 54px; height: 54px; border-radius: 50%; background: #f43f5e; }
+.vide-p2 { position: absolute; right: 2px; top: 0; width: 36px; height: 36px; border-radius: 50%; background: #1d4ed8; }
+.vide-titre { margin: 0 0 8px; font-size: 22px; font-weight: 700; }

@@ -1,7 +1,7 @@
 // Service Worker : permet à l'application de fonctionner hors ligne.
 // IMPORTANT : à chaque modification de l'application, augmente le numéro
-// ci-dessous (v2 -> v3...) pour que le téléphone récupère les nouveaux fichiers.
-const CACHE_NAME = "planificateur-v2";
+// ci-dessous (v4 -> v5...) pour que le téléphone récupère les nouveaux fichiers.
+const CACHE_NAME = "planificateur-v4";
 
 const FICHIERS_A_CACHER = [
   "./",
@@ -10,6 +10,9 @@ const FICHIERS_A_CACHER = [
   "./js/lib/dexie.min.js",
   "./js/db.js",
   "./js/app.js",
+  "./css/fonts/poppins-400.woff",
+  "./css/fonts/poppins-500.woff",
+  "./css/fonts/poppins-700.woff",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png"
