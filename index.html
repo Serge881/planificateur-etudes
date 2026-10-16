@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#2563eb">
+  <meta name="theme-color" content="#1e1b4b">
   <title>Planificateur d'études</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon-192.png">
@@ -11,15 +11,13 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>Planificateur d'études</h1>
-  </header>
+  <div id="app" aria-live="polite"></div>
 
-  <main>
-    <p>Bienvenue ! L'application est installée.</p>
-    <p id="etat-reseau" class="etat">Vérification du réseau…</p>
-  </main>
-
+  <!-- 1) Dexie : bibliothèque de base de données locale -->
+  <script src="js/lib/dexie.min.js"></script>
+  <!-- 2) Notre base de données -->
+  <script src="js/db.js"></script>
+  <!-- 3) Les écrans et la logique de l'application -->
   <script src="js/app.js"></script>
 </body>
 </html>

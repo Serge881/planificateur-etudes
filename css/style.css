@@ -1,36 +1,92 @@
-/* Styles du Planificateur d'études */
-* {
-  box-sizing: border-box;
+/* ===== Couleurs (thème clair par défaut, sombre automatique) ===== */
+:root {
+  --fond: #f5f3ff; --carte: #ffffff; --texte: #1e1b4b; --discret: #475569;
+  --entete: #1e1b4b; --nav: #1e1b4b; --primaire: #6d28d9; --danger: #b91c1c;
+  --bord: #e2e8f0;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond: #0f0d24; --carte: #1b1840; --texte: #f1f0ff; --discret: #b9b5e8;
+    --entete: #2e2a6e; --nav: #2a2660; --primaire: #8b5cf6; --danger: #fca5a5;
+    --bord: #3b3680;
+  }
 }
 
+* { box-sizing: border-box; }
 body {
-  font-family: system-ui, sans-serif;
-  margin: 0;
-  background: #f8fafc;
-  color: #0f172a;
+  margin: 0; background: var(--fond); color: var(--texte);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
+#app { max-width: 520px; margin: 0 auto; min-height: 100vh; }
+.page { padding-bottom: 32px; }
+.page.avec-nav { padding-bottom: 110px; }
 
-header {
-  background: #2563eb;
-  color: white;
-  padding: 16px;
+/* ===== En-tête ===== */
+.hero {
+  position: relative; overflow: hidden; background: var(--entete); color: #fff;
+  border-radius: 0 0 34px 34px; padding: 34px 22px 30px; min-height: 150px;
 }
+.hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; }
+.hero::before { right: -50px; top: -60px; width: 190px; height: 190px; background: #6d28d9; opacity: .55; }
+.hero::after { right: 60px; bottom: -40px; width: 90px; height: 90px; background: #f43f5e; opacity: .45; }
+.hero > * { position: relative; z-index: 1; }
+.hero-petit { margin: 0; font-size: 13px; font-weight: 600; opacity: .9; }
+.hero-titre { margin: 6px 0 0; font-size: 30px; font-weight: 800; letter-spacing: -.5px; }
+.hero-texte { margin: 8px 0 0; font-size: 14px; opacity: .9; }
+.pilule { display: inline-block; margin-top: 12px; padding: 5px 12px; border-radius: 999px;
+  background: rgba(255,255,255,.2); font-size: 13px; font-weight: 700; }
 
-header h1 {
-  margin: 0;
-  font-size: 1.3rem;
-}
+/* ===== Cartes et formulaires ===== */
+.carte { background: var(--carte); border-radius: 22px; padding: 18px; margin: 14px 18px;
+  box-shadow: 0 2px 10px rgba(30,27,75,.12); }
+.carte-haute { margin-top: -26px; position: relative; }
+.carte-titre { margin: 0 0 8px; font-size: 17px; font-weight: 800; }
+.texte { margin: 0 0 14px; color: var(--discret); font-size: 15px; line-height: 1.5; }
+.etiquette { display: block; margin: 4px 0 6px; font-size: 13px; font-weight: 700; color: var(--discret); }
+.champ { width: 100%; min-height: 48px; padding: 12px 14px; margin-bottom: 16px; font: inherit; font-size: 16px;
+  color: var(--texte); background: var(--carte); border: 2px solid var(--bord); border-radius: 14px; }
+.champ:focus, .bouton:focus-visible, .bouton-secondaire:focus-visible, .bouton-danger:focus-visible,
+.pastille:focus-visible, .tuile:focus-visible, .tuile-ajout:focus-visible, .nav-item:focus-visible {
+  outline: 3px solid var(--primaire); outline-offset: 2px; }
+.erreur { min-height: 20px; margin: 0 0 8px; color: var(--danger); font-size: 14px; font-weight: 600; }
 
-main {
-  padding: 16px;
-}
+/* ===== Boutons ===== */
+.bouton, .bouton-secondaire, .bouton-danger {
+  display: flex; align-items: center; justify-content: center; width: 100%; min-height: 52px; margin-top: 10px;
+  padding: 0 18px; border-radius: 18px; font: inherit; font-size: 16px; font-weight: 800; cursor: pointer; text-decoration: none; }
+.bouton { border: 0; background: var(--primaire); color: #fff; }
+.bouton-secondaire { background: transparent; color: var(--primaire); border: 2px solid var(--primaire); }
+.bouton-danger { background: transparent; color: var(--danger); border: 2px solid var(--danger); }
+.zone-bouton { margin: 0 18px; }
+.ligne-ajout { display: flex; gap: 10px; align-items: flex-start; }
+.ligne-ajout .champ { margin-bottom: 12px; flex: 1; }
+.ligne-ajout .bouton-secondaire { width: auto; margin-top: 0; min-height: 48px; }
 
-.etat {
-  display: inline-block;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: #e2e8f0;
-}
+/* ===== Couleurs et puces ===== */
+.palette { display: flex; flex-wrap: wrap; gap: 12px; margin: 4px 0 16px; }
+.pastille { width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; }
+.pastille.choisie { outline: 3px solid var(--texte); outline-offset: 3px; }
+.puces { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.puce { display: inline-flex; align-items: center; gap: 6px; padding: 6px 6px 6px 14px; border-radius: 999px;
+  color: #fff; font-size: 14px; font-weight: 700; }
+.puce-x { width: 28px; height: 28px; border: 0; border-radius: 50%; background: rgba(255,255,255,.25);
+  color: #fff; font-size: 18px; line-height: 1; cursor: pointer; }
 
-.etat.en-ligne { background: #dcfce7; }
-.etat.hors-ligne { background: #fee2e2; }
+/* ===== Matières ===== */
+.grille { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px; }
+.tuile { display: flex; flex-direction: column; padding: 16px; border-radius: 22px; color: #fff; text-decoration: none;
+  box-shadow: 0 8px 18px rgba(0,0,0,.18); min-height: 130px; }
+.tuile-init { width: 42px; height: 42px; border-radius: 14px; background: rgba(255,255,255,.22);
+  display: flex; align-items: center; justify-content: center; font-weight: 800; }
+.tuile-nom { margin-top: 14px; font-size: 16px; font-weight: 800; overflow-wrap: anywhere; }
+.tuile-sous { margin-top: 2px; font-size: 13px; opacity: .92; }
+.tuile-ajout { grid-column: span 2; display: flex; align-items: center; justify-content: center; min-height: 64px;
+  border: 2px dashed var(--primaire); border-radius: 22px; color: var(--primaire); font-weight: 800; text-decoration: none; }
+
+/* ===== Navigation du bas ===== */
+.nav { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); width: calc(100% - 28px); max-width: 492px;
+  height: 66px; display: flex; background: var(--nav); border-radius: 24px; box-shadow: 0 8px 24px rgba(30,27,75,.35); }
+.nav-item { flex: 1; margin: 6px 3px; border-radius: 18px; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 2px; color: #fff; opacity: .8; font-size: 10px; font-weight: 700; text-decoration: none; }
+.nav-item.actif { background: #6d28d9; opacity: 1; }
+.lien-bouton { text-decoration: none; }
