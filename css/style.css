@@ -3,18 +3,23 @@
 @font-face { font-family: "Poppins"; font-weight: 500; font-style: normal; font-display: swap; src: url("fonts/poppins-500.woff") format("woff"); }
 @font-face { font-family: "Poppins"; font-weight: 700; font-style: normal; font-display: swap; src: url("fonts/poppins-700.woff") format("woff"); }
 
-/* ===== Couleurs (thème clair par défaut, sombre automatique) ===== */
+/* ===== Couleurs : thème clair par défaut ; sombre automatique, ou choisi dans les réglages ===== */
 :root {
   --fond: #f5f3ff; --carte: #ffffff; --texte: #1e1b4b; --discret: #475569;
   --entete: #1e1b4b; --nav: #1e1b4b; --primaire: #6d28d9; --danger: #b91c1c;
   --bord: #e2e8f0;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --fond: #0f0d24; --carte: #1b1840; --texte: #f1f0ff; --discret: #b9b5e8;
     --entete: #2e2a6e; --nav: #2a2660; --primaire: #8b5cf6; --danger: #fca5a5;
     --bord: #3b3680;
   }
+}
+:root[data-theme="dark"] {
+  --fond: #0f0d24; --carte: #1b1840; --texte: #f1f0ff; --discret: #b9b5e8;
+  --entete: #2e2a6e; --nav: #2a2660; --primaire: #8b5cf6; --danger: #fca5a5;
+  --bord: #3b3680;
 }
 
 * { box-sizing: border-box; }
@@ -134,3 +139,77 @@ select.champ { appearance: auto; }
 .vide-p1 { position: absolute; left: 0; top: 90px; width: 54px; height: 54px; border-radius: 50%; background: #f43f5e; }
 .vide-p2 { position: absolute; right: 2px; top: 0; width: 36px; height: 36px; border-radius: 50%; background: #1d4ed8; }
 .vide-titre { margin: 0 0 8px; font-size: 22px; font-weight: 700; }
+
+/* ===== Examens ===== */
+.examen, .carte-examen { display: flex; text-decoration: none; color: #fff; }
+.examen { flex-direction: column; gap: 4px; padding: 18px; border-radius: 22px; box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+.examen.passe { opacity: .65; }
+.examen-haut { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.examen-matiere { font-size: 15px; font-weight: 700; }
+.examen-badge, .ex-badge { background: #fff; border-radius: 999px; padding: 5px 12px; font-weight: 700; font-size: 14px; white-space: nowrap; }
+.examen-date { font-size: 24px; font-weight: 700; margin-top: 6px; }
+.examen-info { font-size: 14px; opacity: .95; }
+.carte-examen { margin: -34px 18px 0; position: relative; align-items: center; gap: 12px; padding: 18px; border-radius: 22px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25); }
+.ex-gauche { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.ex-petit { font-size: 13px; font-weight: 600; opacity: .95; }
+.ex-nom { font-size: 22px; font-weight: 700; margin: 2px 0; overflow-wrap: anywhere; }
+.ex-info { font-size: 14px; opacity: .95; }
+.ex-badge { font-size: 20px; }
+.carte-examen + .carte { margin-top: 14px; }
+
+/* ===== Calendrier ===== */
+.mois-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.mois-nav .hero-titre { margin: 0; flex: 1; text-align: center; }
+.fleche { width: 48px; height: 48px; border: 0; border-radius: 50%; background: rgba(255,255,255,.2); color: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; }
+.fleche:focus-visible, .jour:focus-visible, .filtre:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.cal-entete, .cal-grille { display: grid; grid-template-columns: repeat(7, 1fr); }
+.cal-entete { text-align: center; font-size: 12px; font-weight: 700; color: var(--discret); margin-bottom: 6px; }
+.jour { height: 48px; border: 0; border-radius: 14px; background: none; color: var(--texte); font: inherit; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
+.jour-num { font-size: 14px; font-weight: 700; }
+.jour.auj { box-shadow: inset 0 0 0 2px var(--primaire); }
+.jour.choisi { background: var(--primaire); color: #fff; }
+.points { display: flex; gap: 3px; height: 6px; }
+.point { width: 6px; height: 6px; border-radius: 50%; outline: 1px solid rgba(255,255,255,.8); }
+.zone-bouton .bouton-secondaire + .bouton-secondaire { margin-top: 10px; }
+
+/* ===== Notes et moyennes ===== */
+.gros-chiffre { font-size: 54px; font-weight: 700; letter-spacing: -2px; margin-top: 4px; }
+.sur { font-size: 22px; opacity: .85; margin-left: 4px; letter-spacing: 0; }
+.carte-note { background: var(--carte); border-radius: 22px; padding: 16px; box-shadow: 0 2px 10px rgba(30,27,75,.12); }
+.note-entete { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-weight: 700; }
+.note-nom { display: flex; align-items: center; gap: 8px; }
+.point-matiere { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.note-moy { font-size: 18px; }
+.ligne-note { display: flex; justify-content: space-between; gap: 10px; align-items: center; min-height: 44px; border-top: 1px solid var(--bord);
+  color: inherit; text-decoration: none; font-weight: 500; }
+.lien-ajout { display: flex; align-items: center; min-height: 44px; color: var(--primaire); font-weight: 700; text-decoration: none; }
+
+/* ===== Documents ===== */
+.doc { text-decoration: none; color: inherit; padding: 10px 14px; gap: 12px; }
+.doc-icone { flex: none; width: 48px; height: 56px; border-radius: 12px; color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; }
+textarea.champ { min-height: 200px; resize: vertical; line-height: 1.5; }
+.cache { display: none; }
+
+/* ===== Menu Plus et réglages ===== */
+.ligne-menu { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 20px; background: var(--carte);
+  box-shadow: 0 2px 10px rgba(30,27,75,.12); color: inherit; text-decoration: none; min-height: 64px; }
+.ligne-menu:focus-visible { outline: 3px solid var(--primaire); outline-offset: 2px; }
+.ligne-icone { flex: none; width: 42px; height: 42px; border-radius: 14px; background: rgba(109,40,217,.14); color: var(--primaire);
+  display: flex; align-items: center; justify-content: center; }
+.ligne-texte { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.segments { display: flex; gap: 8px; }
+.segment { flex: 1; min-height: 48px; border: 2px solid var(--bord); border-radius: 14px; background: transparent; color: var(--texte);
+  font: inherit; font-weight: 700; cursor: pointer; }
+.segment.actif { border-color: var(--primaire); background: var(--primaire); color: #fff; }
+.segment:focus-visible, .interrupteur:focus-visible { outline: 3px solid var(--primaire); outline-offset: 2px; }
+.ligne-interrupteur { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.ligne-interrupteur .carte-titre { margin: 0; }
+.interrupteur { width: 56px; height: 32px; border: 0; border-radius: 16px; background: var(--bord); position: relative; cursor: pointer; flex: none; }
+.interrupteur.actif { background: var(--primaire); }
+.interrupteur-bouton { position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 50%; background: #fff; transition: left .15s; }
+.interrupteur.actif .interrupteur-bouton { left: 28px; }
+@media (prefers-reduced-motion: reduce) { .interrupteur-bouton { transition: none; } }
